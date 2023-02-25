@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 
-import CreateList, { count, collection } from './createList.js';
+import CreateList from './createList.js';
+import { count, collection } from './export.js';
 
 const todoList = document.querySelector('.todo-list');
 

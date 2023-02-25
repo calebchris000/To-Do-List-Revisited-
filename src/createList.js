@@ -2,13 +2,12 @@ import Checked from './completed.js';
 import Store from './store.js';
 import menu from './menu.svg';
 import deleteList from './deleteList.js';
+import { count, collection } from './export.js';
 
 const todoList = document.querySelector('.todo-list');
 
 const store = new Store();
 /* eslint-disable import/no-mutable-exports */
-export let count = 0;
-export const collection = [];
 
 class CreateList {
   create(input, isChecked) {
@@ -54,7 +53,7 @@ class CreateList {
     });
 
     deleteButton.addEventListener('click', () => {
-      deleteList(list, item, deleteButton);
+      deleteList(list, item, deleteButton, collective.index);
     });
 
     list.appendChild(checkBox);
