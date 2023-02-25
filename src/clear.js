@@ -1,15 +1,16 @@
-import CreateList from "./createList.js";
-import { count } from "./createList.js";
-import { collection } from "./createList.js";
-const todoList = document.querySelector(".todo-list");
+/* eslint-disable no-unused-vars */
+
+import CreateList, { count, collection } from './createList.js';
+
+const todoList = document.querySelector('.todo-list');
 
 collection = [];
 const clear = () => {
-  todoList.innerHTML = "";
+  todoList.innerHTML = '';
   count = 0;
   collection = [];
-  let fromLocal = JSON.parse(localStorage.getItem("data"));
-  let output = [];
+  const fromLocal = JSON.parse(localStorage.getItem('data'));
+  const output = [];
   fromLocal.forEach((item) => {
     if (!item.isChecked) {
       output.push(item);
@@ -18,7 +19,7 @@ const clear = () => {
     }
   });
 
-  localStorage.setItem("data", JSON.stringify(output));
+  localStorage.setItem('data', JSON.stringify(output));
 };
 
 export default clear;

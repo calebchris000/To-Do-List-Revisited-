@@ -1,38 +1,35 @@
-
 class Checked {
   constructor(item, text, list) {
     this.item = item;
     this.text = text;
-    this.list = list
+    this.list = list;
   }
 
   cross(index) {
-    this.text.style.textDecoration = "line-through";
+    this.text.style.textDecoration = 'line-through';
 
-    let fromLocal = JSON.parse(localStorage.getItem('data'));
+    const fromLocal = JSON.parse(localStorage.getItem('data'));
 
-    fromLocal.forEach(element => {
-      if(element.index === index){
-        element.isChecked = true
+    fromLocal.forEach((element) => {
+      if (element.index === index) {
+        element.isChecked = true;
       }
     });
-    localStorage.setItem('data', JSON.stringify(fromLocal))
-    
+    localStorage.setItem('data', JSON.stringify(fromLocal));
   }
 
   uncross(index) {
-    this.text.style.textDecoration = "none";
+    this.text.style.textDecoration = 'none';
 
-    let fromLocal = JSON.parse(localStorage.getItem('data'));
+    const fromLocal = JSON.parse(localStorage.getItem('data'));
 
-    fromLocal.forEach(element => {
-      if(element.index === index){
-        element.isChecked = false
+    fromLocal.forEach((element) => {
+      if (element.index === index) {
+        element.isChecked = false;
       }
     });
-    this.list.style.backgroundColor = 'rgba(0, 0, 0, 0)'
-    localStorage.setItem('data', JSON.stringify(fromLocal))
-
+    this.list.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    localStorage.setItem('data', JSON.stringify(fromLocal));
   }
 }
 
