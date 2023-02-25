@@ -1,12 +1,11 @@
-import CreateList from "./createList.js";
-
+import CreateList from './createList.js';
 
 const restoreItems = () => {
-    let fromLocal = JSON.parse(localStorage.getItem('data'));
+  const fromLocal = JSON.parse(localStorage.getItem('data'));
 
-    fromLocal.forEach((item) => {
-        new CreateList().create(item.chars, item.isChecked)
-    })
-}
+  fromLocal.forEach((item) => {
+    new CreateList().create(item.chars, item.isChecked);
+  });
+};
 
-export default restoreItems
+export default restoreItems;
