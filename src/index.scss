@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Karla:weight@400;700&display=swap");
 
-$font: "Karla", sans-serif;
 $primary-color: #000;
 $auto-margin: auto;
 $container: 20px;
@@ -13,7 +12,6 @@ $font-family: "poppins", "san-serif";
 $bottom-color: #e8e8e8;
 
 body {
-  font-family: $font;
   color: $primary-color;
   display: flex;
   align-items: center;
@@ -70,8 +68,6 @@ body {
   border-bottom: 2px solid $bottom-color;
   height: $uniform-height;
 }
-
-
 
 .checkBox {
   height: 16px;
