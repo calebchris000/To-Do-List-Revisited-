@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css?family=Karla:weight@400;700&display=swap");
+
+$font: "Karla", sans-serif;
+$primary-color: #000;
+$auto-margin: auto;
+$container: 20px;
+$border-default: 2px solid #000;
+$uniform-height: 40px;
+$border-color: #f0f0f0;
+$uniform-height: 50px;
+$greyish: #3c3c3c;
+$font-family: "poppins", "san-serif";
+$bottom-color: #e8e8e8;
+
+body {
+  font-family: $font;
+  color: $primary-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100vh;
+  font-family: $font-family;
+}
+
+.container {
+  width: 36%;
+  box-shadow: 0 0 16px #d1d1d1;
+}
+
+.header {
+  border: none;
+  user-select: none;
+  border-bottom: 2px solid $bottom-color;
+}
+
+.headerText {
+  margin-left: 12px;
+  color: $greyish;
+  font-weight: 600;
+}
+
+#input {
+  border: none;
+  border-bottom: 2px solid $bottom-color;
+  width: 100%;
+  height: 60px;
+  border-color: $border-color;
+  font-style: italic;
+  box-sizing: border-box;
+  color: $greyish;
+  text-indent: 12px;
+  font-size: 1.05rem;
+}
+
+#input:focus {
+  outline: none;
+}
+
+#input::placeholder {
+  position: relative;
+  left: 12px;
+  font-size: 1.05rem;
+}
+
+.list {
+  border: none;
+  display: flex;
+  margin: 5px auto;
+  border-bottom: 2px solid $bottom-color;
+  height: $uniform-height;
+}
+
+
+
+.checkBox {
+  height: 16px;
+  width: 16px;
+  position: relative;
+  top: 12px;
+  margin-left: 12px;
+}
+
+.item {
+  border: none;
+  margin-left: 10px;
+  color: $greyish;
+  font-size: 1.05rem;
+  background-color: rgba(0, 0, 0, 0);
+  width: 80%;
+}
+
+.item:focus {
+  outline: none;
+}
+
+.more {
+  position: relative;
+  left: 20px;
+  width: 4px;
+}
+
+.delete {
+  position: relative;
+  left: 10px;
+  width: 18px;
+}
+
+.clear {
+  border: none;
+  height: 50px;
+  user-select: none;
+  border-bottom: 2px solid $bottom-color;
+  align-items: center;
+  text-align: center;
+}
+
+.clear-link {
+  text-decoration: none;
+  color: $greyish;
+  position: relative;
+  top: 8px;
+}
