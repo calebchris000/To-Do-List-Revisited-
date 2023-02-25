@@ -1,5 +1,5 @@
 import CreateList from './createList.js';
-import restoreItems from '../test.js';
+import restoreItems from './restore.js';
 import './index.scss';
 import clear from './clear.js';
 
