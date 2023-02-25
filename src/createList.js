@@ -1,54 +1,59 @@
-import Checked from "./completed.js";
-import Store from "./store.js";
-import menu from "./menu.svg";
-import deleteList from "./deleteList.js";
+import Checked from './completed.js';
+import Store from './store.js';
+import menu from './menu.svg';
+import deleteList from './deleteList.js';
 
-let todoList = document.querySelector(".todo-list");
+const todoList = document.querySelector('.todo-list');
 
-let store = new Store();
+const store = new Store();
+/* eslint-disable import/no-mutable-exports */
 export let count = 0;
-export let collection = [];
+export const collection = [];
 
 class CreateList {
-  constructor() {}
-
   create(input, isChecked) {
-    let collective = { chars: "", isChecked: isChecked, index: 0 };
+    this.input = input;
+    this.isChecked = isChecked;
+    const collective = { chars: '', isChecked, index: 0 };
 
-    collective.chars = input;
+    collective.chars = this.input;
     collective.index = count;
 
     count += 1;
 
-    let list = document.createElement("div");
-    let checkBox = document.createElement("input");
-    let item = document.createElement("input");
-    let deleteButton = document.createElement("img");
+    const list = document.createElement('div');
+    const checkBox = document.createElement('input');
+    const item = document.createElement('input');
+    const deleteButton = document.createElement('img');
 
-    checkBox.checked = isChecked;
+    checkBox.checked = this.isChecked;
 
-    checkBox.checked ? (item.style.textDecoration = "line-through") : 0;
+    if (checkBox.checked) {
+      item.style.textDecoration = 'line-through';
+    }
 
-    item.type = "text";
-    checkBox.type = "checkbox";
+    item.type = 'text';
+    checkBox.type = 'checkbox';
     deleteButton.src = menu;
 
-    list.classList.add("list");
-    item.classList.add("item");
-    deleteButton.classList.add("more");
-    checkBox.classList.add("checkBox");
+    list.classList.add('list');
+    item.classList.add('item');
+    deleteButton.classList.add('more');
+    checkBox.classList.add('checkBox');
 
     item.disabled = true;
     const checked = new Checked(checkBox, item, list);
 
     item.value = collective.chars;
-    checkBox.addEventListener("change", () => {
-      checkBox.checked
-        ? checked.cross(collective.index, isChecked)
-        : checked.uncross(collective.index, isChecked);
+    checkBox.addEventListener('change', () => {
+      if (checkBox.checked) {
+        checked.cross(collective.index, isChecked);
+      } else {
+        checked.uncross(collective.index, isChecked);
+      }
     });
 
-    deleteButton.addEventListener("click", () => {
+    deleteButton.addEventListener('click', () => {
       deleteList(list, item, deleteButton);
     });
 
