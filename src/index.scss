@@ -13,42 +13,40 @@ $bottom-color: #e8e8e8;
 
 body {
   color: $primary-color;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0;
-  height: 100vh;
   font-family: $font-family;
 }
 
 .container {
   width: 36%;
   box-shadow: 0 0 16px #d1d1d1;
+  margin: 0 auto;
 }
 
 .header {
   border: none;
   user-select: none;
   border-bottom: 2px solid $bottom-color;
+  margin-top: 10px;
 }
 
 .headerText {
-  margin-left: 12px;
+  margin: 0;
   color: $greyish;
   font-weight: 600;
+  padding: 20px;
 }
 
 #input {
   border: none;
-  border-bottom: 2px solid $bottom-color;
+  border-bottom: 2.9px solid $bottom-color;
   width: 100%;
-  height: 60px;
-  border-color: $border-color;
   font-style: italic;
   box-sizing: border-box;
   color: $greyish;
   text-indent: 12px;
   font-size: 1.05rem;
+  padding: 20px;
 }
 
 #input:focus {
@@ -56,24 +54,19 @@ body {
 }
 
 #input::placeholder {
-  position: relative;
-  left: 12px;
   font-size: 1.05rem;
 }
 
 .list {
   border: none;
   display: flex;
-  margin: 5px auto;
   border-bottom: 2px solid $bottom-color;
-  height: $uniform-height;
+  padding: 20px;
 }
 
 .checkBox {
   height: 16px;
   width: 16px;
-  position: relative;
-  top: 12px;
   margin-left: 12px;
 }
 
@@ -104,16 +97,35 @@ body {
 
 .clear {
   border: none;
-  height: 50px;
   user-select: none;
   border-bottom: 2px solid $bottom-color;
   align-items: center;
   text-align: center;
+  padding: 20px;
+  background-color: #f4f3f3;
+  box-sizing: border-box;
 }
+
+.clear:active {
+  background-color: $bottom-color;
+}
+
+
 
 .clear-link {
   text-decoration: none;
   color: $greyish;
-  position: relative;
-  top: 8px;
+}
+
+.clear-link:hover {
+  text-decoration: underline;
+}
+
+footer {
+  margin: 0 auto;
+
+}
+
+.copyright {
+  color: $greyish;
 }
