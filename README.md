@@ -89,7 +89,7 @@ Clone this repository to your desired folder:
 
 
 ```sh
-  git clone https://github.com/calebchris000/Microverse-ToDo-List.git
+  git clone https://github.com/calebchris000/To-Do-List-Revisited-.git
   cd my-folder
 ```
 ### Install
