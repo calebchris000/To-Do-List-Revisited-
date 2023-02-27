@@ -5,12 +5,14 @@ import { count, collection } from './export.js';
 
 const todoList = document.querySelector('.todo-list');
 
-const deleteList = (list, item, deleteButton, index) => {
+const deleteList = (list, item, menuToggle, deleteToggle, index) => {
   item.disabled = false;
-  deleteButton.src = Delete;
-  deleteButton.classList.add('delete');
+  deleteToggle.style.display = 'block';
+  menuToggle.style.display = 'none';
+  deleteToggle.src = Delete;
+  deleteToggle.classList.add('delete');
 
-  deleteButton.addEventListener('click', () => {
+  deleteToggle.addEventListener('click', () => {
     todoList.removeChild(list);
 
     collection.forEach((element) => {

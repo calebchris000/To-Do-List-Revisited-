@@ -23,7 +23,8 @@ class CreateList {
     const list = document.createElement('div');
     const checkBox = document.createElement('input');
     const item = document.createElement('input');
-    const deleteButton = document.createElement('img');
+    const menuToggle = document.createElement('img');
+    const deleteToggle = document.createElement('img');
 
     checkBox.checked = this.isChecked;
 
@@ -33,11 +34,13 @@ class CreateList {
 
     item.type = 'text';
     checkBox.type = 'checkbox';
-    deleteButton.src = menu;
+    menuToggle.src = menu;
 
     list.classList.add('list');
     item.classList.add('item');
-    deleteButton.classList.add('more');
+    menuToggle.classList.add('more');
+    deleteToggle.classList.add('delete');
+    deleteToggle.style.display = 'none';
     checkBox.classList.add('checkBox');
 
     item.disabled = true;
@@ -52,13 +55,33 @@ class CreateList {
       }
     });
 
-    deleteButton.addEventListener('click', () => {
-      deleteList(list, item, deleteButton, collective.index);
+    item.addEventListener('keydown', (event) => {
+      const get = JSON.parse(localStorage.getItem('data'));
+
+      if (event.key === 'Enter') {
+        get.forEach((element) => {
+          if (element.index === collective.index) {
+            element.chars = item.value;
+          }
+          item.disabled = true;
+          list.style.backgroundColor = '#fff';
+          deleteToggle.style.display = 'none';
+          menuToggle.style.display = 'block';
+          menuToggle.classList.remove('delete');
+          menuToggle.classList.add('more');
+          localStorage.setItem('data', JSON.stringify(get));
+        });
+      }
+    });
+
+    menuToggle.addEventListener('click', () => {
+      deleteList(list, item, menuToggle, deleteToggle, collective.index);
     });
 
     list.appendChild(checkBox);
     list.appendChild(item);
-    list.appendChild(deleteButton);
+    list.appendChild(menuToggle);
+    list.appendChild(deleteToggle);
     todoList.appendChild(list);
     collection.push(collective);
 
