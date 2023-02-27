@@ -39,8 +39,8 @@ class CreateList {
     list.classList.add('list');
     item.classList.add('item');
     menuToggle.classList.add('more');
-    deleteToggle.classList.add('delete')
-    deleteToggle.style.display = 'none'
+    deleteToggle.classList.add('delete');
+    deleteToggle.style.display = 'none';
     checkBox.classList.add('checkBox');
 
     item.disabled = true;
@@ -55,25 +55,24 @@ class CreateList {
       }
     });
 
-    item.addEventListener('keydown',(event) => {
-      let get = JSON.parse(localStorage.getItem('data'));
+    item.addEventListener('keydown', (event) => {
+      const get = JSON.parse(localStorage.getItem('data'));
 
-      if(event.key === 'Enter') {
-        get.forEach(element => {
-          if(element.index === collective.index) {
+      if (event.key === 'Enter') {
+        get.forEach((element) => {
+          if (element.index === collective.index) {
             element.chars = item.value;
           }
-          item.disabled = true
-          list.style.backgroundColor = '#fff'
-          deleteToggle.style.display = 'none'
-          menuToggle.style.display = 'block'
+          item.disabled = true;
+          list.style.backgroundColor = '#fff';
+          deleteToggle.style.display = 'none';
+          menuToggle.style.display = 'block';
           menuToggle.classList.remove('delete');
-          menuToggle.classList.add('more')
-          localStorage.setItem('data', JSON.stringify(get))
+          menuToggle.classList.add('more');
+          localStorage.setItem('data', JSON.stringify(get));
         });
       }
-     
-    })
+    });
 
     menuToggle.addEventListener('click', () => {
       deleteList(list, item, menuToggle, deleteToggle, collective.index);
@@ -82,7 +81,7 @@ class CreateList {
     list.appendChild(checkBox);
     list.appendChild(item);
     list.appendChild(menuToggle);
-    list.appendChild(deleteToggle)
+    list.appendChild(deleteToggle);
     todoList.appendChild(list);
     collection.push(collective);
 

@@ -7,8 +7,8 @@ const todoList = document.querySelector('.todo-list');
 
 const deleteList = (list, item, menuToggle, deleteToggle, index) => {
   item.disabled = false;
-  deleteToggle.style.display = 'block'
-  menuToggle.style.display = 'none'
+  deleteToggle.style.display = 'block';
+  menuToggle.style.display = 'none';
   deleteToggle.src = Delete;
   deleteToggle.classList.add('delete');
 
