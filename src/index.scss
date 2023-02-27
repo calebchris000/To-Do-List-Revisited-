@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Karla:weight@400;700&display=swap");
-
 $primary-color: #000;
 $auto-margin: auto;
 $container: 20px;
@@ -128,4 +126,6 @@ footer {
 
 .copyright {
   color: $greyish;
+  text-align: center;
+  user-select: none;
 }
