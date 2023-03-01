@@ -2,7 +2,6 @@ import createList from './createList.js';
 import create from './localStorage.js';
 import './index.scss';
 
-const todoList = document.querySelector('.todo-list');
 const input = document.getElementById('input');
 const clearButton = document.querySelector('.clear');
 
@@ -10,39 +9,17 @@ let output = [];
 
 input.addEventListener('keydown', (event) => {
   if (event.key === 'Enter' && input.value !== '') {
+    output = [];
+    const getty = JSON.parse(localStorage.getItem('data'));
+    if (getty !== null) {
+      getty.map((x) => output.push(x));
+    }
+
     create(input.value, false, output);
     createList();
     input.value = '';
   }
 });
-
-//* Delete a selected list
-
-export const deleteList = (list, deleteToggle, index) => {
-  output = []
-  deleteToggle.addEventListener('click', () => {
-    todoList.removeChild(list);
-
-    const data = JSON.parse(localStorage.getItem('data'));
-
-    data.forEach((element) => {
-      if (element.index === index) {
-        data.splice(index, 1);
-      }
-    });
-    data.forEach((item, index) => {
-      item.index = index;
-      output.push(item)
-    });
-
-    localStorage.setItem('data', JSON.stringify(data));
-
-    createList();
-  });
-
-  list.style.backgroundColor = '#FFFEC3';
-};
-
 
 const clear = () => {
   output = [];
