@@ -1,6 +1,7 @@
 import Checked from './completed.js';
 import menu from './menu.svg';
 import Delete from './delete.svg';
+import { deleteList } from './index.js';
 
 const todoList = document.querySelector('.todo-list');
 
@@ -13,31 +14,6 @@ const editList = (get, item, data) => {
     localStorage.setItem('data', JSON.stringify(get));
   });
   return get;
-};
-//* Delete a selected list
-
-const deleteList = (list, deleteToggle, index) => {
-  deleteToggle.addEventListener('click', () => {
-    todoList.removeChild(list);
-
-    const data = JSON.parse(localStorage.getItem('data'));
-
-    data.forEach((element) => {
-      if (element.index === index) {
-        data.splice(index, 1);
-      }
-    });
-    data.forEach((item, index) => {
-      item.index = index;
-    });
-
-    localStorage.setItem('data', JSON.stringify(data));
-
-    /* eslint-disable no-use-before-define */
-    createList();
-  });
-
-  list.style.backgroundColor = '#FFFEC3';
 };
 
 //* Create a list
