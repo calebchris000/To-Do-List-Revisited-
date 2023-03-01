@@ -1,15 +1,16 @@
-import create from "../src/localStorage";
+import createMock from "../__mocks__/localStorageMock";
 
+let out = []
+describe("TEST createList", () => {
 let arr = [{ value: "One", checked: true, index: 0 }];
 
-describe("TEST createList", () => {
-  let first = create("One", true);
   test("test function", () => {
-    expect(first).toEqual(arr);
+  let first = createMock("One", true, out);
+  expect(first).toEqual(arr);
   });
 
   test("should ", () => {
-    let second = create("two", false);
+    let second = createMock("two", false, out);
     arr.push({ value: "two", checked: false, index: 1 });
 
     expect(second).toEqual(arr);
