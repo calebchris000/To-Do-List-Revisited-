@@ -12,7 +12,7 @@ class Checked {
 
     fromLocal.forEach((element) => {
       if (element.index === index) {
-        element.isChecked = true;
+        element.checked = true;
       }
     });
     localStorage.setItem('data', JSON.stringify(fromLocal));
@@ -25,7 +25,7 @@ class Checked {
 
     fromLocal.forEach((element) => {
       if (element.index === index) {
-        element.isChecked = false;
+        element.checked = false;
       }
     });
     this.list.style.backgroundColor = 'rgba(0, 0, 0, 0)';

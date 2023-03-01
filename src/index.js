@@ -1,18 +1,27 @@
-import CreateList from './createList.js';
-import restoreItems from './restore.js';
+import createList from './createList.js';
+import { clear } from './createList.js';
 import './index.scss';
-import clear from './clear.js';
 
 const input = document.getElementById('input');
 const clearButton = document.querySelector('.clear');
 
 input.addEventListener('keydown', (event) => {
   if (event.key === 'Enter' && input.value !== '') {
-    new CreateList().create(input.value, false);
+   createList(input.value, false);
     input.value = '';
   }
 });
 
+
+
 clearButton.addEventListener('click', clear);
+
+const restoreItems = () => {
+  const fromLocal = JSON.parse(localStorage.getItem('data'));
+
+  fromLocal.forEach((item) => {
+    createList(item.chars, item.checked);
+  });
+};
 
 window.onload = restoreItems();
