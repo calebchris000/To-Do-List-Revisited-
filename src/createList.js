@@ -1,32 +1,59 @@
 import Checked from './completed.js';
-import Store from './store.js';
 import menu from './menu.svg';
-import deleteList from './deleteList.js';
-import { count, collection } from './export.js';
+import Delete from './delete.svg';
 
 const todoList = document.querySelector('.todo-list');
 
-const store = new Store();
-/* eslint-disable import/no-mutable-exports */
+//* Editing the list
+const editList = (get, item, data) => {
+  get.forEach((element) => {
+    if (element.index === data.index) {
+      element.value = item;
+    }
+    localStorage.setItem('data', JSON.stringify(get));
+  });
+  return get;
+};
+//* Delete a selected list
 
-class CreateList {
-  create(input, isChecked) {
-    this.input = input;
-    this.isChecked = isChecked;
-    const collective = { chars: '', isChecked, index: 0 };
+const deleteList = (list, deleteToggle, index) => {
+  deleteToggle.addEventListener('click', () => {
+    todoList.removeChild(list);
 
-    collective.chars = this.input;
-    collective.index = count;
+    const data = JSON.parse(localStorage.getItem('data'));
 
-    count += 1;
+    data.forEach((element) => {
+      if (element.index === index) {
+        data.splice(index, 1);
+      }
+    });
+    data.forEach((item, index) => {
+      item.index = index;
+    });
 
+    localStorage.setItem('data', JSON.stringify(data));
+
+    /* eslint-disable no-use-before-define */
+    createList();
+  });
+
+  list.style.backgroundColor = '#FFFEC3';
+};
+
+//* Create a list
+
+const createList = () => {
+  todoList.innerHTML = '';
+  const fromLocal = JSON.parse(localStorage.getItem('data'));
+
+  fromLocal.forEach((data) => {
     const list = document.createElement('div');
     const checkBox = document.createElement('input');
     const item = document.createElement('input');
     const menuToggle = document.createElement('img');
     const deleteToggle = document.createElement('img');
 
-    checkBox.checked = this.isChecked;
+    checkBox.checked = data.checked;
 
     if (checkBox.checked) {
       item.style.textDecoration = 'line-through';
@@ -46,36 +73,36 @@ class CreateList {
     item.disabled = true;
     const checked = new Checked(checkBox, item, list);
 
-    item.value = collective.chars;
+    item.value = data.value;
     checkBox.addEventListener('change', () => {
       if (checkBox.checked) {
-        checked.cross(collective.index, isChecked);
+        checked.cross(data.index, data.checked);
       } else {
-        checked.uncross(collective.index, isChecked);
+        checked.uncross(data.index, data.checked);
       }
     });
 
     item.addEventListener('keydown', (event) => {
       const get = JSON.parse(localStorage.getItem('data'));
-
       if (event.key === 'Enter') {
-        get.forEach((element) => {
-          if (element.index === collective.index) {
-            element.chars = item.value;
-          }
-          item.disabled = true;
-          list.style.backgroundColor = '#fff';
-          deleteToggle.style.display = 'none';
-          menuToggle.style.display = 'block';
-          menuToggle.classList.remove('delete');
-          menuToggle.classList.add('more');
-          localStorage.setItem('data', JSON.stringify(get));
-        });
+        editList(get, item.value, data);
+
+        item.disabled = true;
+        list.style.backgroundColor = '#fff';
+        deleteToggle.style.display = 'none';
+        menuToggle.style.display = 'block';
+        menuToggle.classList.remove('delete');
+        menuToggle.classList.add('more');
       }
     });
 
     menuToggle.addEventListener('click', () => {
-      deleteList(list, item, menuToggle, deleteToggle, collective.index);
+      deleteList(list, deleteToggle, data.index);
+      item.disabled = false;
+      deleteToggle.style.display = 'block';
+      menuToggle.style.display = 'none';
+      deleteToggle.src = Delete;
+      deleteToggle.classList.add('delete');
     });
 
     list.appendChild(checkBox);
@@ -83,10 +110,7 @@ class CreateList {
     list.appendChild(menuToggle);
     list.appendChild(deleteToggle);
     todoList.appendChild(list);
-    collection.push(collective);
+  });
+};
 
-    store.add(collection);
-  }
-}
-
-export default CreateList;
+export default createList;
