@@ -1,12 +1,10 @@
-const input = document.getElementById('input');
 
-let output = [];
 
-const create = (input, checked) => {
-let object = {value: input, checked: checked, index: output.length};
-output.push(object);
-localStorage.setItem('data', JSON.stringify(output))
-return output;
+const create = (input, checked, array) => {
+let object = {value: input, checked: checked, index: array.length};
+array.push(object);
+localStorage.setItem('data', JSON.stringify(array))
+return array;
 }
 
 export default create

@@ -1,29 +1,20 @@
 import Checked from "./completed.js";
-import Store from "./store.js";
 import menu from "./menu.svg";
 import Delete from "./delete.svg";
 
-let count = 0;
-let collection = [];
 
 const todoList = document.querySelector(".todo-list");
 
-const store = new Store();
 
 //* Editing the list
-const editList = (get) => {
+const editList = (get, item, data) => {
   get.forEach((element) => {
     if (element.index === data.index) {
-      element.chars = item.value;
+      element.value = item;
     }
-    item.disabled = true;
-    list.style.backgroundColor = "#fff";
-    deleteToggle.style.display = "none";
-    menuToggle.style.display = "block";
-    menuToggle.classList.remove("delete");
-    menuToggle.classList.add("more");
     localStorage.setItem("data", JSON.stringify(get));
   });
+  return get;
 };
 //* Delete a selected list
 
@@ -33,51 +24,33 @@ const deleteList = (list, item, menuToggle, deleteToggle, index) => {
   menuToggle.style.display = "none";
   deleteToggle.src = Delete;
   deleteToggle.classList.add("delete");
-
   deleteToggle.addEventListener("click", () => {
     todoList.removeChild(list);
 
-    collection.forEach((element) => {
+    let data = JSON.parse(localStorage.getItem("data"));
+
+    data.forEach((element) => {
       if (element.index === index) {
-        collection.splice(index, 1);
+        data.splice(index, 1);
       }
     });
-    count = collection.length;
-
-    collection.forEach((element, index) => {
-      element.index = index;
+    data.forEach((item, index) => {
+      item.index = index;
     });
 
-    localStorage.setItem("data", JSON.stringify(collection));
+    localStorage.setItem("data", JSON.stringify(data));
+
+    createList();
   });
 
   list.style.backgroundColor = "#FFFEC3";
 };
 
-//* Clear all checked list
-
-export const clear = () => {
-  todoList.innerHTML = "";
-  const fromLocal = JSON.parse(localStorage.getItem("data"));
-  const output = [];
-  fromLocal.forEach((item) => {
-    if (!item.checked) {
-      output.push(item);
-      createList(item.chars, item.checked);
-    }
-  });
-
-  output.forEach((item, index) => {
-    item.index = index;
-  });
-  localStorage.setItem("data", JSON.stringify(output));
-  return output;
-};
 
 //* Create a list
 
 const createList = () => {
-  todoList.innerHTML = ''
+  todoList.innerHTML = "";
   let fromLocal = JSON.parse(localStorage.getItem("data"));
 
   fromLocal.forEach((data) => {
@@ -119,7 +92,14 @@ const createList = () => {
     item.addEventListener("keydown", (event) => {
       const get = JSON.parse(localStorage.getItem("data"));
       if (event.key === "Enter") {
-        editList(get);
+        editList(get, item.value, data);
+
+        item.disabled = true;
+        list.style.backgroundColor = "#fff";
+        deleteToggle.style.display = "none";
+        menuToggle.style.display = "block";
+        menuToggle.classList.remove("delete");
+        menuToggle.classList.add("more");
       }
     });
 
