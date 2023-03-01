@@ -1,5 +1,5 @@
 const clear = (arr) => {
-    let output = []
+  const output = [];
   arr.forEach((item) => {
     if (!item.checked) {
       output.push(item);
@@ -9,7 +9,7 @@ const clear = (arr) => {
   output.forEach((item, index) => {
     item.index = index;
   });
-  return output
+  return output;
 };
 
 export default clear;
