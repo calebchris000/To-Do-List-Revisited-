@@ -36,6 +36,8 @@
 # 📖 ToDo List Application <a name="todo-list"></a>
 **[ToDo List Application]** is a project made with the use of HTML, CSS and JavaScript
 
+![image](https://github.com/calebchris000/To-Do-List-Revisited-/blob/jest/todo-list.png?raw=true)
+
 ## 🛠 Built With <a name="built-with"></a>
 
 - HTML
