@@ -32,9 +32,6 @@ const deleteList = (list, deleteToggle, index) => {
     });
 
     localStorage.setItem('data', JSON.stringify(data));
-
-    /* eslint-disable no-use-before-define */
-    createList();
   });
 
   list.style.backgroundColor = '#FFFEC3';
