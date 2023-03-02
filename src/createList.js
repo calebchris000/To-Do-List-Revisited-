@@ -12,7 +12,6 @@ const editList = (get, item, data) => {
     }
     localStorage.setItem('data', JSON.stringify(get));
   });
-  return get;
 };
 //* Delete a selected list
 
