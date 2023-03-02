@@ -34,7 +34,7 @@
 <!-- PROJECT DESCRIPTION -->
 
 # 📖 ToDo List Application <a name="todo-list"></a>
-**[ToDo List Application]** is a project made with the use of HTML, CSS and JavaScript
+**[ToDo List Application]** he project is done using Vanilla javascript and HTML as well as css. In this project, It has been implementd the CRUD (create, read, update, delete) methods. project set up To Do list structure using ES6 and webpack handler.
 
 ![image](https://github.com/calebchris000/To-Do-List-Revisited-/blob/jest/todo-list.png?raw=true)
 

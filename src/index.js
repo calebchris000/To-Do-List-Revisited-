@@ -46,6 +46,9 @@ clearButton.addEventListener('click', clear);
 const restoreItems = () => {
   const fromLocal = JSON.parse(localStorage.getItem('data'));
 
+  if (fromLocal === null) {
+    return;
+  }
   fromLocal.forEach((item) => {
     output.push(item);
     createList();

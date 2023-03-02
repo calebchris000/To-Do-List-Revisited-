@@ -12,7 +12,6 @@ const editList = (get, item, data) => {
     }
     localStorage.setItem('data', JSON.stringify(get));
   });
-  return get;
 };
 //* Delete a selected list
 
@@ -32,9 +31,6 @@ const deleteList = (list, deleteToggle, index) => {
     });
 
     localStorage.setItem('data', JSON.stringify(data));
-
-    /* eslint-disable no-use-before-define */
-    createList();
   });
 
   list.style.backgroundColor = '#FFFEC3';
